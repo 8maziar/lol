@@ -1,0 +1,306 @@
+<html>
+  <head>
+    <style>
+      body {
+        background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
+        margin: 0;
+      }
+      #heading {
+        min-height: 30px;
+        text-align: center;
+        padding: 20px;
+        background-color: #1c4273;
+        font-size: 50px;
+        color: #eaeaea;
+        margin: 0 0 10px;
+      }
+
+      #body-container {
+        display: flex;
+      }
+
+      #items-section {
+        margin: 0 auto;
+      }
+      .item-container {
+        padding: 0px;
+        margin: 10px 40px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        font-size: 16px;
+        min-width: 450px;
+        min-height: 150px;
+        background-color: rgb(250, 250, 250);
+        box-shadow: 0px 25px 40px #2d363d33;
+        border-radius: 20px;
+      }
+
+      .item-img {
+        height: 150px;
+        width: 150px;
+      }
+
+      .item-desc {
+        width: 100px;
+      }
+
+      .item-price {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #right-col {
+        margin: 0 auto;
+      }
+
+      #cart {
+        text-align: center;
+        font-size: 30px;
+        padding: 15px;
+        margin: 10px auto;
+        width: 500px;
+        max-height: 460px;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0px 25px 40px #1687d933;
+      }
+
+      #cart-heading {
+        border-bottom: black solid 2px;
+      }
+
+      #cart-list div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0;
+      }
+
+      #cart-list img {
+        width: 70px;
+        height: 70px;
+      }
+
+      button {
+        width: 60px;
+        height: 40px;
+        border: none;
+        background: linear-gradient(to bottom right, #043371, #2c77d9);
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 26px;
+        font-weight: 900;
+        font-family: ‘Open Sans’;
+        color: #eaeaea;
+        text-align: center;
+      }
+
+      button:hover {
+        background: rgb(62, 158, 137);
+        color: #1c4273;
+      }
+
+      address {
+        background-color: fff;
+        border: #1c4273 solid 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="heading">Shopping cart</div>
+    <div id="body-container">
+      <section id="items-section">
+        <div class="item-container">
+          <img
+            src="https://i.postimg.cc/mrMVqPK7/photo-1588872657578-7efd1f1555ed.jpg"
+            class="item-img"
+          />
+          <div>
+            <p class="item-desc">
+              Laptop 14s-fq0017na 14" AMD 3020e 4GB RAM 64GB
+            </p>
+            <p class="item-price">£720</p>
+          </div>
+
+          <button id="add-btn-laptop">+</button>
+          <button id="remove-btn-laptop">-</button>
+        </div>
+        <div class="item-container">
+          <img
+            src="https://i.postimg.cc/pV6vR7pk/61d0u-Tj-Kbk-L-AC-SX522.jpg"
+            class="item-img"
+          />
+          <div>
+            <p class="item-desc">
+              Bluetooth Wireless With USB Mouse For Laptop Computer
+            </p>
+            <p class="item-price">£15</p>
+          </div>
+          <button id="add-btn-mouse">+</button>
+          <button id="remove-btn-mouse">-</button>
+        </div>
+        <div class="item-container">
+          <img
+            src="https://i.postimg.cc/Cx9mmGrF/photo-1545127398-14699f92334b.jpg"
+            class="item-img"
+          />
+          <div>
+            <p class="item-desc">
+              Wireless Headphones Bluetooth Headset Noise Cancelling
+            </p>
+            <p class="item-price">£40</p>
+          </div>
+          <button id="add-btn-headphone">+</button>
+          <button id="remove-btn-headphone">-</button>
+        </div>
+      </section>
+      <div id="right-col">
+        <section id="cart">
+          <div>
+            <div id="cart-heading">
+              <p>Your Shopping</p>
+            </div>
+            <div id="cart-list">
+              <div>
+                <img
+                  src="https://i.postimg.cc/mrMVqPK7/photo-1588872657578-7efd1f1555ed.jpg"
+                />
+                <span>Laptop</span>
+                <span id="cart-qty-laptop">0</span>
+              </div>
+              <div>
+                <img
+                  src="https://i.postimg.cc/pV6vR7pk/61d0u-Tj-Kbk-L-AC-SX522.jpg"
+                />
+                <span>Mouse</span>
+                <span id="cart-qty-mouse">0</span>
+              </div>
+              <div>
+                <img
+                  src="https://i.postimg.cc/Cx9mmGrF/photo-1545127398-14699f92334b.jpg"
+                />
+                <span>Headphone</span>
+                <span id="cart-qty-headphone">0</span>
+              </div>
+              <span>Total : £</span><span id="total-price">0</span>
+            </div>
+          </div>
+        </section>
+        <div>
+          <span>Your address : </span><input id="text" />
+          <button id="input-button" style="min-width: 100px">Add</button>
+          <p id="list"></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      var laptop, mouse, headphone, totalPrice;
+
+      laptop = 0;
+      mouse = 0;
+      headphone = 0;
+      totalPrice = 0;
+
+      document
+        .getElementById("add-btn-laptop")
+        .addEventListener("click", (event) => {
+          laptop = (typeof laptop === "number" ? laptop : 0) + 1;
+          totalPrice = (typeof totalPrice === "number" ? totalPrice : 0) + 720;
+          let element_total_price = document.getElementById("total-price");
+          element_total_price.innerText = totalPrice;
+          let element_cart_qty_laptop =
+            document.getElementById("cart-qty-laptop");
+          element_cart_qty_laptop.innerText = laptop;
+        });
+
+      document
+        .getElementById("remove-btn-laptop")
+        .addEventListener("click", (event) => {
+          if (laptop >= 1) {
+            laptop = (typeof laptop === "number" ? laptop : 0) + -1;
+            totalPrice =
+              (typeof totalPrice === "number" ? totalPrice : 0) + -720;
+            let element_total_price2 = document.getElementById("total-price");
+            element_total_price2.innerText = totalPrice;
+            let element_cart_qty_laptop2 =
+              document.getElementById("cart-qty-laptop");
+            element_cart_qty_laptop2.innerText = laptop;
+          }
+        });
+
+      document
+        .getElementById("remove-btn-mouse")
+        .addEventListener("click", (event) => {
+          if (mouse >= 1) {
+            mouse = (typeof mouse === "number" ? mouse : 0) + -1;
+            totalPrice =
+              (typeof totalPrice === "number" ? totalPrice : 0) + -15;
+            let element_total_price3 = document.getElementById("total-price");
+            element_total_price3.innerText = totalPrice;
+            let element_cart_qty_mouse =
+              document.getElementById("cart-qty-mouse");
+            element_cart_qty_mouse.innerText = mouse;
+          }
+        });
+
+      document
+        .getElementById("add-btn-mouse")
+        .addEventListener("click", (event) => {
+          mouse = (typeof mouse === "number" ? mouse : 0) + 1;
+          totalPrice = (typeof totalPrice === "number" ? totalPrice : 0) + 15;
+          let element_total_price4 = document.getElementById("total-price");
+          element_total_price4.innerText = totalPrice;
+          let element_cart_qty_mouse2 =
+            document.getElementById("cart-qty-mouse");
+          element_cart_qty_mouse2.innerText = mouse;
+        });
+
+      document
+        .getElementById("add-btn-headphone")
+        .addEventListener("click", (event) => {
+          headphone = (typeof headphone === "number" ? headphone : 0) + 1;
+          totalPrice = (typeof totalPrice === "number" ? totalPrice : 0) + 40;
+          let element_total_price5 = document.getElementById("total-price");
+          element_total_price5.innerText = totalPrice;
+          let element_cart_qty_headphone =
+            document.getElementById("cart-qty-headphone");
+          element_cart_qty_headphone.innerText = headphone;
+        });
+
+      document
+        .getElementById("remove-btn-headphone")
+        .addEventListener("click", (event) => {
+          if (headphone >= 1) {
+            headphone = (typeof headphone === "number" ? headphone : 0) + -1;
+            totalPrice =
+              (typeof totalPrice === "number" ? totalPrice : 0) + -40;
+            let element_total_price6 = document.getElementById("total-price");
+            element_total_price6.innerText = totalPrice;
+            let element_cart_qty_headphone2 =
+              document.getElementById("cart-qty-headphone");
+            element_cart_qty_headphone2.innerText = headphone;
+          }
+        });
+      function getNumberOrString(value) {
+        // Convert a string value to a number if possible
+        let number_value = Number(value);
+        if (Number.isNaN(number_value)) {
+          return value;
+        } else {
+          return number_value;
+        }
+      }
+      document
+        .getElementById("input-button")
+        .addEventListener("click", (event) => {
+          let ptext = document.getElementById("list");
+          ptext.style.backgroundColor = "#ffffff";
+          ptext.innerText = getNumberOrString(
+            document.getElementById("text").value
+          );
+        });
+    </script>
+  </body>
+</html>
